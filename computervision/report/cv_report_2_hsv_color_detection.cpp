@@ -101,7 +101,7 @@ private:
 	}
 
 	int getDistanceHue(const cv::Vec3b& color) const {
-		return abs(color[0] - hueTarget);
+		return abs( (color[0] - hueTarget) % 180 );
 	}
 
 	int getDistanceSat(const cv::Vec3b& color) const {
