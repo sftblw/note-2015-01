@@ -22,7 +22,7 @@ SECTION 02 암호
 	-	왕재산 사건 : 요즘 북한군은 지령을 동영상으로 보낸다
 	-	key 관리하는 부분이 중요.
 
-![Bamboo Pages의 필기들](pw03-bp1.png) ![Bamboo Pages의 필기들](pw03-bp2.png) ![Bamboo Pages의 필기들](pw03-bp3.png) ![Bamboo Pages의 필기들](pw03-bp4.png) ![Bamboo Pages의 필기들](pw03-bp5.png)
+![Bamboo Pages의 필기들](cipher03-bp1.png) ![Bamboo Pages의 필기들](cipher03-bp2.png) ![Bamboo Pages의 필기들](cipher03-bp3.png) ![Bamboo Pages의 필기들](cipher03-bp4.png) ![Bamboo Pages의 필기들](cipher03-bp5.png)
 
 ### 2.2 암호 시스템의 기호적 표현
 
@@ -34,7 +34,7 @@ SECTION 02 암호
 
 ↓ 그림으로
 
-![그림 2.8](pw03-01.png)
+![그림 2.8](cipher03-01.png)
 
 섹션 03 대칭 암호와 공개 키 암호
 --------------------------------
@@ -44,7 +44,7 @@ SECTION 02 암호
 ### 목차
 
 -	키 교환 알고리즘
-	-	![pw03-02.png](pw03-02.png)
+	-	![cipher03-02.png](cipher03-02.png)
 -	대칭키와 비대칭키
 -	하이브리드가 뭔지 보자 (간단한 거 보낼땐 은행에서도...)
 
@@ -78,7 +78,7 @@ SECTION 02 암호
 -	공개키 암호 (public-key cryptography)
 	-	키 중 공개키는 공개 → 이름이 공개키
 
-![그림 2-9 (37p) : 대칭 암호와 비대칭 암호](pw03-cam1.JPG)
+![그림 2-9 (37p) : 대칭 암호와 비대칭 암호](cipher03-cam1.JPG)
 
 ### 3.4 하이브리드 암호 시스템
 
@@ -118,7 +118,7 @@ SECTION 02 암호
 	-	지금은 잘 몰라도 됨
 -	암호를 해시 → 짧아짐, 암호가 달라진다 → 해시가 달라진다
 
-![](pw03-04.png)
+![](cipher03-04.png)
 
 ### 4.2 메시지 인증 코드
 
@@ -152,7 +152,7 @@ SECTION 02 암호
 	-	디지털 서명
 	-	의사 난수 생성기
 
-![](pw03-cam2.JPG)
+![](cipher03-cam2.JPG)
 
 -	암호 기술들이 사용되고 있다
 
@@ -238,7 +238,7 @@ SECTION 02 암호
 	-	줄리어스 시저 (유리우스 케사르) 가 사용하였다는 암호
 	-	평문으로 사용되는 알파벳을 일정한 문자 수 만큼 **평행이동** 시킴으로서 암호화
 
-![](pw03-05.png)
+![](cipher03-05.png)
 
 -	은어도 하나의 규칙 → 암호로 볼 수 있음 → 집단에서의 암호.
 -	저 암호로는 아쉬우니 `y = ax` 로 바꿔볼까
@@ -250,11 +250,11 @@ SECTION 02 암호
 1.2 ~ 1.3 시저 암호의 암호화, 복호화
 ------------------------------------
 
-![](pw03-ceaser1.png)
+![](cipher03-ceaser1.png)
 
-![](pw03-ceaser2.png)
+![](cipher03-ceaser2.png)
 
-![](pw03-ceaser3.png)
+![](cipher03-ceaser3.png)
 
 ### 1.4 전사 공격에 의한 해독
 
