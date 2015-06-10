@@ -8,6 +8,32 @@ os_matome_final
 
 1.	운영체제란 무엇인가
 2.	프로그래밍 과제 2개. 변수이름 살짝씩 바꿈, 빈칸채우기, 틀린거 고르기
+	-	스레드
+		-	`pthread_create( &mythread, NULL, thread_function, NULL)` // 스레드 ID 변수 (주소), 스레드 속성, 함수, 인자
+		-	`pthread_join( mythread, NULL )` // 스레드 ID 변수, 종료상태 (→ PTHREAD_CANCELED 매크로?)
+	-	세마포어 (p → 임계영역 → v)
+		-	`int semget(key_t key, int nsems, int semflg);`
+			-	`sem_id = semget((key_t)1234, 1, 0666 | IPC_CREAT);`
+		-	`int semctl(int semid, int semnum, int cmd, ...);`
+			-	set_semvalue()
+				-	`union semun sem_union;`
+				-	`sem_union.val = 1;`
+				-	`if (semctl(sem_id, 0, SETVAL, sem_union) == -1) return(0);` // 실패시
+			-	del_semvalue()
+				-	`if (semctl(sem_id, 0, IPC_RMID, sem_union) == -1)`
+		-	`int semop(int semid, struct sembuf *sops, unsigned nsops);`
+			-	`struct sembuf *sops : 변경 정보의 배열 (대상, 동작, 플래그)`
+			-	`semop(sem_id, &pbuf, 1)` // ← sem_num = 0, sem_op = -1, sem_flg = SEM_UNDO
+			-	`semop(sem_id, &vbuf, 1)` // ← sem_num = 0, sem_op = 1, sem_flg = SEM_UNDO
+	-	공유메모리 (`void * shared_memory`\)
+		-	`int shmget(key_t key,  int size, int shmflg);`
+			-	`shmget((key_t)1234, sizeof(struct shared_use_st), 0666 | IPC_CREAT)`
+		-	`void *shmat(int shmid, const void *shmaddr, int shmflg);`
+			-	`shared_memory = shmat(shmid, (void *)0, 0)` // 실패시 -1 반환
+		-	`int shmdt(const void *shmaddr);` // detach
+			-	`shmdt(shared_memory)`
+		-	`int shmctl(int shmid, int cmd, struct shmid_ds *buf);`
+			-	`shmctl(shmid, IPC_RMID, 0)` // IPC_RMID : 제거를 세그먼트에 표시함 (요청) : 마지막 프로세스가 떼어내면 제거됨
 
 ---
 
@@ -57,10 +83,10 @@ os_matome_final
 		-	원자적 연산 (Atomic Operation) : 단위연산. 블랙박스, 간섭, 중지 불가
 		-	임계 영역 (Critical section) : 공유 자원을 접근하는 코드 영역. (딴애들이 접근 = 문제 발생)
 		-	교착상태 (Deadlock) : 두 개 이상의 .가 더이상 진행을 할 수 없는 상태
-		-	라이브 락 (Livelock, Busy-waiting)
-		-	상호 배제 (Mutual Exclusion)
-		-	경쟁상태 (Race Condition)
-		-	기아상태 (Starvation)
+		-	라이브 락 (Livelock, Busy-waiting) : CPU만 뺑뺑 도는 상황. 유익하지 않은 작업을 반복적으로 수행
+		-	상호 배제 (Mutual Exclusion) : 한 순간에 한 프로세스만이 해당 자원 사용 가능 / 내가 쓰면 네가 못 쓰고, 네가 쓰면 내가 못 쓰고. / 각 프로세스들은 열심히 수행하고는 있지만, 수행하는 작업은 유용한 작업이 아닌 반복적인 상태 변화일 뿐이다.
+		-	경쟁상태 (Race Condition) : 같은 걸 동시에 쓰려고 경쟁 / 두 개 이상의 프로세스가 공유 자원을 동시에 접근하려는 상태.
+		-	기아상태 (Starvation) : 굶기. 스케줄링 X. 매우 오랜 기간동안 스케줄링되지 못하는 경우
 	-	대표적인 병행성 기법
 		-	세마포어 ()
 			-	이진 세마포어
